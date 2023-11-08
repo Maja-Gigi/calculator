@@ -7,6 +7,7 @@
 </head>
 
 <body>
+  <p class="js-display-calculation"></p>
   <p>
     <button onclick="
       updateCalculation('1');
@@ -72,7 +73,7 @@
     
     <button onclick="
       calculation = eval(calculation);
-      console.log(calculation);
+      displayCalculation();
 
       // Remember to save the calculation here
       saveCalculation();
@@ -84,7 +85,7 @@
   </p>
     <button onclick="
       calculation = '';
-      console.log(calculation);
+      displayCalculation();
       // Remember to save the calculation here
       saveCalculation();
     ">Clear</button>
@@ -95,17 +96,22 @@
 
   
   <script>
+
     let calculation = localStorage.getItem('calculation') || '';
     
     function updateCalculation(value) {
       calculation += value;
-      console.log(calculation);
+      displayCalculation();
       saveCalculation();
     }
 
     // Mogu i napraviti funkciju za spremanje izračuna
     function saveCalculation() {
       localStorage.setItem('calculation', calculation);
+    }
+
+    function displayCalculation() {
+      document.querySelector('.js-display-calculation').innerHTML = calculation;
     }
   </script>
 </body>
